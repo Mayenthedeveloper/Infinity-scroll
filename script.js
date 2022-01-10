@@ -4,11 +4,15 @@ const loader = document.getElementById("loader");
 let photosArray = [];
 
 //API
-const count = 10;
+const count = 30;
 const apiKey = "gTZTAeOlqPesvXHnq56-P1vdfn7Mcr2UWzGWKe9ha8k";
 const apiUrl = `https://api.unsplash.com/photos/random
 /?client_id=${apiKey}&count=${count}
 `;
+//imager loader
+function imageLoaded() {
+  console.log("Image loaded");
+}
 
 //helper function
 function setAttributes(element, attributes) {
@@ -35,6 +39,8 @@ function displayPhotos() {
       alt: photo.alt_description,
       title: photo.alt_description,
     });
+    // eveent listener,  check when is finished loading
+    img.addEventListener("load", imageLoaded);
     //put img inside a,
     item.appendChild(img);
     imageContainer.appendChild(item);
@@ -57,7 +63,13 @@ async function getPhotos() {
 //check to see if scrolling is near bottom of page, load more pics
 
 window.addEventListener("scroll", () => {
-  console.log("scrolled");
+  if (
+    window.innerHeight + window.scrollY >=
+    document.body.offsetHeight - 1000
+  ) {
+    getPhotos();
+    console.log("load more");
+  }
 });
 
 //on load
