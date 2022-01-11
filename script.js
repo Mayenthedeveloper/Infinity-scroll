@@ -9,7 +9,7 @@ const apiKey = "gTZTAeOlqPesvXHnq56-P1vdfn7Mcr2UWzGWKe9ha8k";
 const apiUrl = `https://api.unsplash.com/photos/random
 /?client_id=${apiKey}&count=${count}
 `;
-//imager loader
+//image loader
 function imageLoaded() {
   console.log("Image loaded");
 }
@@ -39,7 +39,7 @@ function displayPhotos() {
       alt: photo.alt_description,
       title: photo.alt_description,
     });
-    // eveent listener,  check when is finished loading
+    // eveent listener, check when is finished loading
     img.addEventListener("load", imageLoaded);
     //put img inside a,
     item.appendChild(img);
@@ -72,5 +72,5 @@ window.addEventListener("scroll", () => {
   }
 });
 
-//on load
+//On load
 getPhotos();
