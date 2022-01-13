@@ -1,6 +1,9 @@
 const imageContainer = document.getElementById("image-container");
 const loader = document.getElementById("loader");
 
+let ready = false;
+let imagesLoaded = 0;
+let totalImages = 0;
 let photosArray = [];
 
 //API
@@ -12,6 +15,11 @@ const apiUrl = `https://api.unsplash.com/photos/random
 //image loader
 function imageLoaded() {
   console.log("Image loaded");
+  imagesLoaded++;
+  if (imagesLoaded === totalImages) {
+    ready = true;
+    console.log("ready =", ready);
+  }
 }
 
 //helper function
@@ -23,6 +31,8 @@ function setAttributes(element, attributes) {
 
 // create elements for links and photos add to dom
 function displayPhotos() {
+  totalImages = photosArray.length;
+  console.log("total images", totalImages);
   //run function fr each object in photoarray
   photosArray.forEach((photo) => {
     // create <a> to link to unspash
